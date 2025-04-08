@@ -8,8 +8,8 @@ def moving_average_crossover(df):
     df['long_ma'] = df['price'].rolling(window=long_window, min_periods=1).mean()
     df['signal'] = 0
 
-    # Calcola i segnali dove entrambe le medie mobili sono disponibili
-    valid_idx = df.index[short_window:]  # Indici validi dove entrambe le medie sono calcolate
+    # Calculates signals where both moving averages are available
+    valid_idx = df.index[short_window:]  # Valid indices where both averages are calculated
     signals = np.where(df.loc[valid_idx, 'short_ma'] > df.loc[valid_idx, 'long_ma'], 1, 0)
     df.loc[valid_idx, 'signal'] = signals
 

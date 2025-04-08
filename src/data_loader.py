@@ -7,7 +7,7 @@ def load_data(ticker):
     if ('Close', ticker) in data.columns:
         data = data[('Close', ticker)]
     else:
-        raise ValueError(f"La colonna 'Close' per {ticker} non è presente nei dati scaricati")
+        raise ValueError(f"The ‘Close’ column for {ticker} is not present in the downloaded data")
     
     data = pd.DataFrame(data)
     data.columns = ['price']
