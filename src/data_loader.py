@@ -3,7 +3,7 @@ import yfinance as yf
 
 def load_data(ticker):
     data = yf.download(ticker, start="2010-01-01")
-    # Selezioniamo 'Close' e rinominiamola 'price'
+    # Select ‘Close’ and rename it ‘price’.
     if ('Close', ticker) in data.columns:
         data = data[('Close', ticker)]
     else:
