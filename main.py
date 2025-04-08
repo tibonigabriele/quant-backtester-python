@@ -3,6 +3,7 @@ from src.strategy_buy_hold import buy_and_hold
 from src.strategy_ma_crossover import moving_average_crossover
 from src.performance_metrics import compute_metrics
 from src.plotter import plot_equity_curve
+from src.print_metrics import print_metrics
 
 def main():
     # Load data
@@ -20,8 +21,9 @@ def main():
     plot_equity_curve(buy_hold_returns, ma_crossover_returns)
 
     # Print results
-    print("Buy & Hold Metrics:", bh_metrics)
-    print("MA Crossover Metrics:", ma_metrics)
+    print_metrics("Buy & Hold", bh_metrics)
+    print_metrics("MA Crossover", ma_metrics)
+
 
 if __name__ == "__main__":
     main()
