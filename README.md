@@ -84,4 +84,4 @@ This project was created as a personal exercise to:
 
 ## 📬 Contact
 
-Project by [Gabriele Tiboni](https://github.com/tibonigabriele)! – Feel free to reach out for feedback or collaboration!https://github.com/tibonigabriele
+Project by [Gabriele Tiboni]!(https://github.com/tibonigabriele) – Feel free to reach out for feedback or collaboration!https://github.com/tibonigabriele
