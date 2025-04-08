@@ -25,7 +25,7 @@ A lightweight, modular backtesting engine to simulate trading strategies on hist
 ## ⚙️ How to Use
 
 ```bash
-git clone https://github.com/your-username/quant-backtester-python.git
+git clone https://github.com/tibonigabriele/quant-backtester-python.git
 cd quant-backtester-python
 pip install -r requirements.txt
 python main.py
@@ -84,4 +84,4 @@ This project was created as a personal exercise to:
 
 ## 📬 Contact
 
-Project by [Gabriele Tiboni](https://github.com/tibonigabriele) – Feel free to reach out for feedback or collaboration!https://github.com/tibonigabriele
+Project by [Gabriele Tiboni](https://github.com/tibonigabriele)! – Feel free to reach out for feedback or collaboration!https://github.com/tibonigabriele
