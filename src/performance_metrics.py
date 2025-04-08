@@ -1,5 +1,7 @@
 def compute_metrics(returns):
-    returns = returns.dropna()
+    if returns.empty:
+        print("No data to compute metrics.")
+        return None
     total_return = returns.iloc[-1] - 1
     num_years = len(returns) / 252  # assuming daily data
     annualized_return = (returns.iloc[-1]) ** (1 / num_years) - 1
