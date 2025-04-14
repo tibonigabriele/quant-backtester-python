@@ -6,13 +6,15 @@ A lightweight, modular backtesting engine to simulate trading strategies on hist
 
 ## 🚀 Features
 
-- Fetches historical stock data via Yahoo Finance
-- Modular strategy architecture (easy to plug in new ones)
+- Fetches historical data via **Yahoo Finance**
+- Plug-and-play strategy system
+- Support for **rule-based strategies**
 - Computes key performance metrics:
   - **CAGR**
   - **Sharpe Ratio**
   - **Maximum Drawdown**
-- Visualizes equity curves with Matplotlib
+- Visualizes equity curves with **Matplotlib**
+- Supports strategy parameter testing (e.g. MA grid search)
 
 ---
 
@@ -37,11 +39,10 @@ python main.py
 
 ## 💡 Included Strategies
 
-- **Buy & Hold** – benchmark strategy
-- **Moving Average Crossover** – buys when short-term MA crosses above long-term MA
-- **RSI Strategy** – buys when RSI < 30 and sells when RSI > 70
-
-You can add your own strategies by creating new modules in the `src/` folder and modifying `main.py`.
+- **Buy & Hold** – Benchmark strategy
+- **Moving Average Crossover** – Long when short MA > long MA
+- **RSI Strategy** – Long when RSI < 30, exit when RSI > 70
+- **Rule-based framework** – Easily define custom entry/exit logic
 
 ---
 
@@ -50,8 +51,20 @@ You can add your own strategies by creating new modules in the `src/` folder and
 | Metric           | Description                                                 |
 | ---------------- | ----------------------------------------------------------- |
 | **CAGR**         | Compound Annual Growth Rate                                 |
-| **Sharpe Ratio** | Risk-adjusted return (using daily returns, annualized)      |
-| **Max Drawdown** | Largest equity drop from peak to trough during the backtest |
+| **Sharpe Ratio** | Risk-adjusted return (daily returns, annualized)            |
+| **Max Drawdown** | Largest peak-to-trough equity drop during the backtest      |
+
+---
+
+## 🧪 Grid Search Example
+
+You can test parameter combinations by running:
+
+```bash
+python analysis/test_ma_grid_search.py
+```
+
+This script evaluates different MA crossover windows and plots their performance.
 
 ---
 
@@ -59,31 +72,30 @@ You can add your own strategies by creating new modules in the `src/` folder and
 
 ```
 quant-backtester-python/
-├── main.py                     # Main script to run a backtest
+├── main.py                     # Runs selected strategies and plots results
 ├── requirements.txt            # Python dependencies
 ├── LICENSE                     # MIT License
-├── README.md                   # This file
+├── README.md                   # Project overview
 ├── plots/
-│   └── equity_curve.png        # Plot output for README and saved image
+│   └── equity_curve.png        # Saved equity curve
+├── analysis/
+│   └── test_ma_grid_search.py  # Example strategy testing
 └── src/
-    ├── data_loader.py          # Fetches data from Yahoo Finance
-    ├── performance_metrics.py  # Calculates financial metrics
-    ├── plotter.py              # Plots equity curves
-    ├── print_metrics.py        # Prints metrics in terminal
-    ├── strategy_buy_hold.py    # Buy and hold logic
-    ├── strategy_ma_crossover.py # MA crossover strategy logic
-    └── strategy_rsi.py         # RSI-based strategy logic
+    ├── data_loader.py              # Loads data from Yahoo Finance
+    ├── performance_metrics.py      # Calculates metrics
+    ├── plotter.py                  # Generates equity plots
+    ├── print_metrics.py            # Prints results
+    ├── rules/                      # Strategy rules
+    │   ├── base_rule.py
+    │   ├── ma_crossover_rule.py
+    │   └── rsi_rule.py
+    └── strategies/                # Strategy implementations
+        ├── buy_hold_strategy.py
+        ├── ma_crossover_strategy.py
+        ├── rsi_strategy.py
+        ├── rule_based_strategy.py
+        └── strategy_base.py
 ```
-
----
-
-## 😨 Why this project?
-
-This project was created as a personal exercise to:
-
-- Explore quantitative finance and algorithmic strategy evaluation
-- Build a flexible backtesting framework from scratch
-- Learn and apply Python, Pandas, NumPy, and Matplotlib in a real-world use case
 
 ---
 
