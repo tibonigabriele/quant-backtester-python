@@ -1,11 +1,18 @@
 import matplotlib.pyplot as plt
 import os
 
-def plot_equity_curve(bh_returns, ma_returns, rsi_returns):
+def plot_equity_curve(returns_dict):
+    """
+    Plots cumulative returns for multiple strategies.
+
+    Parameters:
+    - returns_dict (dict): Dictionary where keys are strategy names and values are pandas Series of cumulative returns.
+    """
     plt.figure(figsize=(10, 5))
-    plt.plot(bh_returns, label='Buy & Hold')
-    plt.plot(ma_returns, label='MA Crossover')
-    plt.plot(rsi_returns, label='RSI Strategy')
+    
+    for strategy_name, returns in returns_dict.items():
+        plt.plot(returns, label=strategy_name)
+
     plt.title('Equity Curve')
     plt.xlabel('Date')
     plt.ylabel('Cumulative Returns')

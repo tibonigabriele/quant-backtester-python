@@ -11,22 +11,20 @@ def main():
     df = load_data('SPY')
 
     # Implement strategies
-    buy_hold_returns = buy_and_hold(df)
-    ma_crossover_returns = moving_average_crossover(df)
-    rsi_returns = rsi_strategy(df)
+    strategies = {
+        "Buy & Hold": buy_and_hold(df),
+        "MA Crossover": moving_average_crossover(df),
+        "RSI Strategy": rsi_strategy(df)
+    }
 
-    # Compute metrics
-    bh_metrics = compute_metrics(buy_hold_returns)
-    ma_metrics = compute_metrics(ma_crossover_returns)
-    rsi_metrics = compute_metrics(rsi_returns)
+    # Compute metrics and print
+    for name, returns in strategies.items():
+        metrics = compute_metrics(returns)
+        print_metrics(name, metrics)
 
-    # Plot equity curve
-    plot_equity_curve(buy_hold_returns, ma_crossover_returns, rsi_returns)
-
-    # Print results
-    print_metrics("Buy & Hold", bh_metrics)
-    print_metrics("MA Crossover", ma_metrics)
-    print_metrics("RSI Strategy", rsi_metrics)
+    # Plot all strategies
+    plot_equity_curve(strategies)
 
 if __name__ == "__main__":
     main()
+
