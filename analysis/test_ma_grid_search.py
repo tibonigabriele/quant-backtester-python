@@ -11,7 +11,6 @@ from src.print_metrics import print_metrics
 
 # ... resto del codice
 
-
 # Carica i dati una sola volta
 df = load_data("SPY")
 
