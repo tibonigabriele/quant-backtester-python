@@ -5,12 +5,12 @@ class Strategy(ABC):
     @abstractmethod
     def backtest(self, df: pd.DataFrame) -> pd.Series:
         """
-        Esegue il backtest della strategia su un DataFrame di dati storici.
+        Executes the backtest of the strategy on a DataFrame of historical data.
 
-        Parametri:
-        - df (pd.DataFrame): DataFrame con almeno una colonna 'price'
+        Parameters:
+        - df (pd.DataFrame): DataFrame containing at least a 'price' column
 
-        Ritorna:
-        - pd.Series: Serie dei ritorni cumulati della strategia
+        Returns:
+        - pd.Series: Series of the strategy's cumulative returns
         """
         pass

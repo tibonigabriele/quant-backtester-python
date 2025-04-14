@@ -11,9 +11,9 @@ def run_ma_grid_search():
     from src.performance_metrics import compute_metrics
     from src.print_metrics import print_metrics
 
-    print("📥 Scaricamento dati...")
+    print("📥 Downloading data...")
     df = load_data("SPY")
-    print("✅ Dati caricati con successo.\n")
+    print("✅ Data successfully loaded.\n")
 
     short_windows = [10, 20, 50]
     long_windows = [50, 100, 200]
@@ -22,7 +22,7 @@ def run_ma_grid_search():
 
     for short_w, long_w in product(short_windows, long_windows):
         if short_w >= long_w:
-            continue
+            continue  # Short MA must be shorter than long MA
 
         label = f"MA {short_w}-{long_w}"
         strategy = MACrossoverStrategy(short_window=short_w, long_window=long_w)
@@ -43,7 +43,7 @@ def run_ma_grid_search():
         })
 
     if not results:
-        print("\n⚠️ Nessun risultato disponibile.")
+        print("\n⚠️ No results available.")
         return
 
     os.makedirs("results", exist_ok=True)
@@ -63,4 +63,4 @@ def run_ma_grid_search():
     results_df.sort_values(by="Score", ascending=False, inplace=True)
     results_df.to_csv("results/ma_crossover_results.csv", index=False)
 
-    print("\n✅ Analisi completata. Risultati salvati in 'results/ma_crossover_results.csv'")
+    print("\n✅ Analysis completed. Results saved to 'results/ma_crossover_results.csv'")
