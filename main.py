@@ -5,16 +5,14 @@ from src.strategies.rsi_strategy import RSIStrategy
 from src.performance_metrics import compute_metrics
 from src.plotter import plot_equity_curve
 from src.print_metrics import print_metrics
-from src.visualizer import show_ma_grid_results
 
 def main():
     while True:
         print("\nCosa vuoi fare?")
         print("1. Eseguire le strategie base (Buy & Hold, MA, RSI)")
         print("2. Lanciare la grid search su MA Crossover")
-        print("3. Visualizza risultati della Grid Search")
-        print("4. Esci")
-        choice = input("\nScegli un'opzione (1/2/3/4): ")
+        print("3. Esci")
+        choice = input("\nScegli un'opzione (1/2/3): ")
 
         if choice == "1":
             df = load_data("SPY")
@@ -44,9 +42,6 @@ def main():
             run_ma_grid_search()
 
         elif choice == "3":
-            show_ma_grid_results()
-
-        elif choice == "4":
             print("👋 Uscita dal programma.")
             break
         else:
