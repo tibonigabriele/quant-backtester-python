@@ -6,13 +6,13 @@ A lightweight, modular backtesting engine to simulate trading strategies on hist
 
 ## 🚀 Features
 
-- Runs backtests on historical data from CSV files
-- Implements plug-and-play trading strategies
+- Fetches historical stock data via Yahoo Finance
+- Modular strategy architecture (easy to plug in new ones)
 - Computes key performance metrics:
   - **CAGR**
   - **Sharpe Ratio**
   - **Maximum Drawdown**
-- Visualizes equity curves
+- Visualizes equity curves with Matplotlib
 
 ---
 
@@ -31,30 +31,52 @@ pip install -r requirements.txt
 python main.py
 ```
 
-> Make sure your data is stored in the expected format (see `data_loader.py` for details).
+> Make sure you're connected to the internet: the script fetches data using `yfinance`.
 
 ---
 
 ## 💡 Included Strategies
 
-- **Buy & Hold** – simple benchmark
+- **Buy & Hold** – benchmark strategy
 - **Moving Average Crossover** – buys when short-term MA crosses above long-term MA
 
-New strategies can easily be added as standalone modules in the `src/` directory.
+You can add your own strategies by creating new modules in the `src/` folder and modifying `main.py`.
 
 ---
 
 ## 📊 Performance Metrics
 
-| Metric         | Description                                                  |
-|----------------|--------------------------------------------------------------|
-| **CAGR**       | Compound Annual Growth Rate                                  |
-| **Sharpe Ratio** | Risk-adjusted return (using daily returns, annualized)     |
-| **Max Drawdown** | Worst peak-to-trough equity drop during the backtest       |
+| Metric           | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| **CAGR**         | Compound Annual Growth Rate                                 |
+| **Sharpe Ratio** | Risk-adjusted return (using daily returns, annualized)      |
+| **Max Drawdown** | Largest equity drop from peak to trough during the backtest |
 
 ---
 
-## 🧐 Why this project?
+## 📂 Project Structure
+
+```
+quant-backtester-python/
+├── main.py                     # Main script to run a backtest
+├── requirements.txt            # Python dependencies
+├── LICENSE                     # MIT License
+├── README.md                   # This file
+├── equity_curve.png            # Plot output
+├── screenshots/
+│   └── equity_curve.png        # Same plot saved separately for README display
+└── src/
+    ├── data_loader.py          # Fetches data from Yahoo Finance
+    ├── performance_metrics.py  # Calculates financial metrics
+    ├── plotter.py              # Plots equity curves
+    ├── print_metrics.py        # Prints metrics in terminal
+    ├── strategy_buy_hold.py    # Buy and hold logic
+    └── strategy_ma_crossover.py # MA crossover strategy logic
+```
+
+---
+
+## 😨 Why this project?
 
 This project was created as a personal exercise to:
 
@@ -64,24 +86,7 @@ This project was created as a personal exercise to:
 
 ---
 
-## 📂 Project Structure
-
-```
-├── main.py                   # Main script to run a backtest
-├── requirements.txt          # Python dependencies
-├── src/
-│   ├── data_loader.py        # Loads data from CSV
-│   ├── performance_metrics.py# Calculates financial metrics
-│   ├── plotter.py            # Plots equity curve
-│   ├── strategy_buy_hold.py  # Buy and hold logic
-│   └── strategy_ma_crossover.py # MA crossover logic
-├── screenshots/
-│   └── equity_curve.png      # Sample output
-└── README.md                 # This file
-```
-
----
-
 ## 📬 Contact
 
-Project by [Gabriele Tiboni](https://github.com/tibonigabriele) – Feel free to reach out for feedback or collaboration!
+Project by [Gabriele Tiboni](https://github.com/tibonigabriele)  
+Feel free to reach out for feedback or collaboration!
