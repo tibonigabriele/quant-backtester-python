@@ -39,6 +39,7 @@ python main.py
 
 - **Buy & Hold** – benchmark strategy
 - **Moving Average Crossover** – buys when short-term MA crosses above long-term MA
+- **RSI Strategy** – buys when RSI < 30 and sells when RSI > 70
 
 You can add your own strategies by creating new modules in the `src/` folder and modifying `main.py`.
 
@@ -70,7 +71,8 @@ quant-backtester-python/
     ├── plotter.py              # Plots equity curves
     ├── print_metrics.py        # Prints metrics in terminal
     ├── strategy_buy_hold.py    # Buy and hold logic
-    └── strategy_ma_crossover.py # MA crossover strategy logic
+    ├── strategy_ma_crossover.py # MA crossover strategy logic
+    └── strategy_rsi.py         # RSI-based strategy logic
 ```
 
 ---
