@@ -7,29 +7,27 @@ from src.plotter import plot_equity_curve
 from src.print_metrics import print_metrics
 
 def main():
-    # Load data
-    df = load_data('SPY')
+    df = load_data("SPY")
 
-    # Initialize strategies
     strategies = {
         "Buy & Hold": BuyHoldStrategy(),
         "MA Crossover": MACrossoverStrategy(short_window=20, long_window=50),
-        "RSI Strategy": RSIStrategy(rsi_window=14, lower_threshold=30, upper_threshold=70)
+        "RSI Strategy": RSIStrategy()
     }
 
-    # Run backtests
-    strategies_returns = {
-        name: strategy.backtest(df)
-        for name, strategy in strategies.items()
-    }
+    all_returns = {}
+    all_metrics = {}
 
-    # Compute and print metrics
-    for name, returns in strategies_returns.items():
-        metrics = compute_metrics(returns)
+    for name, strategy in strategies.items():
+        cumulative_returns = strategy.backtest(df)
+        metrics = compute_metrics(cumulative_returns)
+
+        all_returns[name] = cumulative_returns
+        all_metrics[name] = metrics
+
         print_metrics(name, metrics)
 
-    # Plot results
-    plot_equity_curve(strategies_returns)
+    plot_equity_curve(all_returns)
 
 if __name__ == "__main__":
     main()
