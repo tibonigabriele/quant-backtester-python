@@ -1,20 +1,19 @@
 # 📈 Quant Backtester
 
-A lightweight, modular backtesting engine to simulate trading strategies on historical stock data and evaluate their performance.
+A modular backtesting engine to simulate and compare trading strategies on historical stock data.
 
 ---
 
 ## 🚀 Features
 
-- Fetches historical data via **Yahoo Finance**
-- Plug-and-play strategy system
-- Support for **rule-based strategies**
-- Computes key performance metrics:
+- Fetches historical data using **Yahoo Finance**
+- Strategy-based architecture with plug-and-play logic
+- Computes financial performance metrics:
   - **CAGR**
   - **Sharpe Ratio**
-  - **Maximum Drawdown**
-- Visualizes equity curves with **Matplotlib**
-- Supports strategy parameter testing (e.g. MA grid search)
+  - **Max Drawdown**
+- Plot equity curves with Matplotlib
+- Easily test rule-based strategies with custom logic
 
 ---
 
@@ -39,10 +38,9 @@ python main.py
 
 ## 💡 Included Strategies
 
-- **Buy & Hold** – Benchmark strategy
-- **Moving Average Crossover** – Long when short MA > long MA
-- **RSI Strategy** – Long when RSI < 30, exit when RSI > 70
-- **Rule-based framework** – Easily define custom entry/exit logic
+- **Buy & Hold** – Baseline benchmark
+- **Moving Average Crossover** – Entry when short MA > long MA
+- **RSI Strategy** – Entry/exit based on RSI thresholds
 
 ---
 
@@ -51,20 +49,8 @@ python main.py
 | Metric           | Description                                                 |
 | ---------------- | ----------------------------------------------------------- |
 | **CAGR**         | Compound Annual Growth Rate                                 |
-| **Sharpe Ratio** | Risk-adjusted return (daily returns, annualized)            |
-| **Max Drawdown** | Largest peak-to-trough equity drop during the backtest      |
-
----
-
-## 🧪 Grid Search Example
-
-You can test parameter combinations by running:
-
-```bash
-python analysis/test_ma_grid_search.py
-```
-
-This script evaluates different MA crossover windows and plots their performance.
+| **Sharpe Ratio** | Risk-adjusted return (annualized)                          |
+| **Max Drawdown** | Largest drop from peak equity to trough during backtest    |
 
 ---
 
@@ -72,24 +58,24 @@ This script evaluates different MA crossover windows and plots their performance
 
 ```
 quant-backtester-python/
-├── main.py                     # Runs selected strategies and plots results
-├── requirements.txt            # Python dependencies
-├── LICENSE                     # MIT License
-├── README.md                   # Project overview
+├── main.py                     # Main script to run the backtest
+├── requirements.txt            # Dependencies
+├── LICENSE                     # License file
+├── README.md                   # Project info
 ├── plots/
-│   └── equity_curve.png        # Saved equity curve
+│   └── equity_curve.png        # Sample equity curve output
 ├── analysis/
-│   └── test_ma_grid_search.py  # Example strategy testing
+│   └── test_ma_grid_search.py # Strategy parameter testing
 └── src/
-    ├── data_loader.py              # Loads data from Yahoo Finance
-    ├── performance_metrics.py      # Calculates metrics
-    ├── plotter.py                  # Generates equity plots
-    ├── print_metrics.py            # Prints results
-    ├── rules/                      # Strategy rules
+    ├── data_loader.py          # Loads financial data
+    ├── performance_metrics.py  # Calculates metrics
+    ├── plotter.py              # Plots returns
+    ├── print_metrics.py        # Pretty-prints metrics
+    ├── rules/                  # Modular strategy rules
     │   ├── base_rule.py
     │   ├── ma_crossover_rule.py
     │   └── rsi_rule.py
-    └── strategies/                # Strategy implementations
+    └── strategies/            # Complete strategy implementations
         ├── buy_hold_strategy.py
         ├── ma_crossover_strategy.py
         ├── rsi_strategy.py
@@ -99,8 +85,18 @@ quant-backtester-python/
 
 ---
 
+## 🧐 Why this project?
+
+To:
+- Explore quantitative trading with Python
+- Build a reusable backtesting framework
+- Learn by doing: Pandas, NumPy, Matplotlib, strategy logic
+
+---
+
 ## 📬 Contact
 
-Project by [Gabriele Tiboni](https://github.com/tibonigabriele)  
-Feel free to reach out for feedback or collaboration!
+Created by [Gabriele Tiboni](https://github.com/tibonigabriele)
+
+Feel free to leave feedback, star the repo, or reach out for collaboration.
 
