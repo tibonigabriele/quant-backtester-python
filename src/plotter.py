@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 
 def plot_equity_curve(bh_returns, ma_returns):
     plt.figure(figsize=(10, 5))
@@ -10,6 +11,7 @@ def plot_equity_curve(bh_returns, ma_returns):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("equity_curve.png")
+    
+    os.makedirs("plots", exist_ok=True)  # ✅ crea la cartella se non esiste
+    plt.savefig("plots/equity_curve.png")
     plt.show()
-

@@ -18,7 +18,7 @@ A lightweight, modular backtesting engine to simulate trading strategies on hist
 
 ## 📸 Demo
 
-![Equity Curve](screenshots/equity_curve.png)
+![Equity Curve](plots/equity_curve.png)
 
 ---
 
@@ -62,9 +62,8 @@ quant-backtester-python/
 ├── requirements.txt            # Python dependencies
 ├── LICENSE                     # MIT License
 ├── README.md                   # This file
-├── equity_curve.png            # Plot output
-├── screenshots/
-│   └── equity_curve.png        # Same plot saved separately for README display
+├── plots/
+│   └── equity_curve.png        # Plot output for README and saved image
 └── src/
     ├── data_loader.py          # Fetches data from Yahoo Finance
     ├── performance_metrics.py  # Calculates financial metrics
@@ -90,3 +89,4 @@ This project was created as a personal exercise to:
 
 Project by [Gabriele Tiboni](https://github.com/tibonigabriele)  
 Feel free to reach out for feedback or collaboration!
+
