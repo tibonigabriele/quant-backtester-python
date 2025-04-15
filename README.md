@@ -100,8 +100,7 @@ quant-backtester-python/
 │       ├── ma_crossover_strategy.py
 │       └── rsi_strategy.py
 └── analysis/
-    ├── ma_grid_search.py       # MA tuning logic
-    └── rsi_grid_search.py      # RSI tuning logic
+    └── grid_search.py      # tuning logic
 ```
 
 ---
