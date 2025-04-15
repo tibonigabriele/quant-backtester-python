@@ -1,37 +1,31 @@
-# analysis/ma_grid_search.py
-
-def run_ma_grid_search():
+def run_grid_search(ticker, strategy_class, param_combinations, file_prefix):
     import os
     import pandas as pd
     from itertools import product
     from sklearn.preprocessing import MinMaxScaler
 
     from src.data_loader import load_data
-    from src.strategies.ma_crossover_strategy import MACrossoverStrategy
     from src.performance_metrics import compute_metrics
     from src.print_metrics import print_metrics
 
-    print("📥 Downloading data...")
-    df = load_data("SPY")
+    print(f"📥 Downloading data for {ticker}...")
+    df = load_data(ticker)
+    if df.empty:
+        print("❌ No data available. Aborting analysis.")
+        return
     print("✅ Data successfully loaded.\n")
-
-    short_windows = [10, 20, 50]
-    long_windows = [50, 100, 200]
 
     results = []
 
-    for short_w, long_w in product(short_windows, long_windows):
-        if short_w >= long_w:
-            continue  # Short MA must be shorter than long MA
-
-        label = f"MA {short_w}-{long_w}"
-        strategy = MACrossoverStrategy(short_window=short_w, long_window=long_w)
+    for params in param_combinations:
+        strategy = strategy_class(*params)
         cumulative_returns = strategy.backtest(df)
         metrics = compute_metrics(cumulative_returns)
 
         if metrics is None:
             continue
 
+        label = f"{strategy_class.__name__} {params}"
         print_metrics(label, metrics)
         print("----------------------------------------")
 
@@ -61,6 +55,6 @@ def run_ma_grid_search():
     )
 
     results_df.sort_values(by="Score", ascending=False, inplace=True)
-    results_df.to_csv("results/ma_crossover_results.csv", index=False)
+    results_df.to_csv(f"results/{file_prefix}_results_{ticker}.csv", index=False)
 
-    print("\n✅ Analysis completed. Results saved to 'results/ma_crossover_results.csv'")
+    print(f"\n✅ Analysis completed. Results saved to 'results/{file_prefix}_results_{ticker}.csv'")

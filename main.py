@@ -1,3 +1,4 @@
+from datetime import datetime
 from src.data_loader import load_data
 from src.strategies.buy_hold_strategy import BuyHoldStrategy
 from src.strategies.ma_crossover_strategy import MACrossoverStrategy
@@ -5,6 +6,7 @@ from src.strategies.rsi_strategy import RSIStrategy
 from src.performance_metrics import compute_metrics
 from src.plotter import plot_equity_curve
 from src.print_metrics import print_metrics
+from analysis.grid_search import run_grid_search  # La funzione generica di grid search
 
 def main():
     while True:
@@ -16,7 +18,28 @@ def main():
         choice = input("\nSelect an option (1/2/3/4): ")
 
         if choice == "1":
-            df = load_data("SPY")
+            ticker = input("Enter a stock ticker (e.g., AAPL, TSLA): ").strip()
+
+            if not ticker:
+                print("❌ Empty ticker. Please enter a valid ticker.")
+                continue
+            
+            start_date = input("Enter start date (YYYY-MM-DD): ").strip()
+            end_date = input("Enter end date (YYYY-MM-DD): ").strip()
+
+            # Verifica se le date sono valide
+            try:
+                start_date = datetime.strptime(start_date, "%Y-%m-%d")
+                end_date = datetime.strptime(end_date, "%Y-%m-%d")
+                if start_date >= end_date:
+                    print("❌ Start date must be earlier than end date.")
+                    continue
+            except ValueError:
+                print("❌ Invalid date format. Please enter the dates in 'YYYY-MM-DD' format.")
+                continue
+
+            # Carica i dati con le date selezionate
+            df = load_data(ticker, start_date=start_date, end_date=end_date)
 
             strategies = {
                 "Buy & Hold": BuyHoldStrategy(),
@@ -38,13 +61,39 @@ def main():
 
             plot_equity_curve(all_returns)
 
-        elif choice == "2":
-            from analysis.ma_grid_search import run_ma_grid_search
-            run_ma_grid_search()
+        elif choice == "2" or choice == "3":
+            ticker = input("Enter a stock ticker (e.g., AAPL, TSLA): ").strip()
 
-        elif choice == "3":
-            from analysis.rsi_grid_search import run_rsi_grid_search
-            run_rsi_grid_search()
+            if not ticker:
+                print("❌ Empty ticker. Please enter a valid ticker.")
+                continue
+            
+            start_date = input("Enter start date (YYYY-MM-DD): ").strip()
+            end_date = input("Enter end date (YYYY-MM-DD): ").strip()
+
+            # Verifica se le date sono valide
+            try:
+                start_date = datetime.strptime(start_date, "%Y-%m-%d")
+                end_date = datetime.strptime(end_date, "%Y-%m-%d")
+                if start_date >= end_date:
+                    print("❌ Start date must be earlier than end date.")
+                    continue
+            except ValueError:
+                print("❌ Invalid date format. Please enter the dates in 'YYYY-MM-DD' format.")
+                continue
+
+            # Carica i dati con le date selezionate
+            df = load_data(ticker, start_date=start_date, end_date=end_date)
+
+            if choice == "2":
+                param_combinations = [(10, 50), (20, 100), (50, 200)]  # Example for MA strategy
+                run_grid_search(ticker, MACrossoverStrategy, param_combinations, "ma_crossover")
+
+            elif choice == "3":
+                param_combinations = [
+                    (10, 20, 30), (14, 50, 60)  # Example for RSI strategy
+                ]
+                run_grid_search(ticker, RSIStrategy, param_combinations, "rsi_strategy")
 
         elif choice == "4":
             print("👋 Exiting the program.")
