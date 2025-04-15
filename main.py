@@ -11,8 +11,9 @@ def main():
         print("\nWhat would you like to do?")
         print("1. Run base strategies (Buy & Hold, MA, RSI)")
         print("2. Run grid search on MA Crossover")
-        print("3. Exit")
-        choice = input("\nSelect an option (1/2/3): ")
+        print("3. Run grid search on RSI Strategy")
+        print("4. Exit")
+        choice = input("\nSelect an option (1/2/3/4): ")
 
         if choice == "1":
             df = load_data("SPY")
@@ -42,6 +43,10 @@ def main():
             run_ma_grid_search()
 
         elif choice == "3":
+            from analysis.rsi_grid_search import run_rsi_grid_search
+            run_rsi_grid_search()
+
+        elif choice == "4":
             print("👋 Exiting the program.")
             break
         else:

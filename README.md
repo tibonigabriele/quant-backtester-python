@@ -1,6 +1,6 @@
 # 📈 Quant Backtester
 
-A lightweight, modular backtesting engine for evaluating trading strategies on historical stock data.
+A lightweight, modular backtesting engine for evaluating trading strategies on historical stock data.  
 Perfect for learning quantitative finance, comparing strategies, and building your own framework.
 
 ---
@@ -14,7 +14,9 @@ Perfect for learning quantitative finance, comparing strategies, and building yo
   - **CAGR**
   - **Sharpe Ratio**
   - **Max Drawdown**
-- Grid Search for Moving Average crossover strategies
+- Grid Search for:
+  - **Moving Average Crossover**
+  - **RSI Strategy**
 - Saves results in CSV and visualizes equity curves
 
 ---
@@ -44,7 +46,8 @@ python main.py
 What would you like to do?
 1. Run base strategies (Buy & Hold, MA, RSI)
 2. Launch MA Crossover grid search
-3. Exit
+3. Launch RSI grid search
+4. Exit
 ```
 
 ---
@@ -59,15 +62,21 @@ What would you like to do?
 
 ## 📊 Sample Grid Search Output
 
-CSV saved in `results/ma_crossover_results.csv`:
+### 📉 MA Crossover Results (`results/ma_crossover_results.csv`)
 
 | Strategy     | CAGR   | Sharpe Ratio | Max Drawdown |
 |--------------|--------|---------------|---------------|
 | MA 10-200    | 0.1122 | 0.95          | 0.1377        |
 | MA 10-100    | 0.1018 | 0.90          | 0.1966        |
-| MA 10-50     | 0.0927 | 0.86          | 0.1727        |
 
-Automatically ranked by a weighted performance score.
+### 🔄 RSI Strategy Results (`results/rsi_grid_search_results.csv`)
+
+| Strategy     | CAGR   | Sharpe Ratio | Max Drawdown |
+|--------------|--------|---------------|---------------|
+| RSI 10-20-80 | 0.0954 | 0.87          | 0.1456        |
+| RSI 14-30-70 | 0.0889 | 0.81          | 0.1823        |
+
+Both outputs are automatically ranked using a weighted performance score.
 
 ---
 
@@ -91,7 +100,8 @@ quant-backtester-python/
 │       ├── ma_crossover_strategy.py
 │       └── rsi_strategy.py
 └── analysis/
-    └── ma_grid_search.py       # Parameter tuning logic
+    ├── ma_grid_search.py       # MA tuning logic
+    └── rsi_grid_search.py      # RSI tuning logic
 ```
 
 ---
