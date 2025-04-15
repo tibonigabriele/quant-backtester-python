@@ -41,10 +41,10 @@ python main.py
 ## 🧠 CLI Menu
 
 ```text
-Cosa vuoi fare?
-1. Eseguire le strategie base (Buy & Hold, MA, RSI)
-2. Lanciare la grid search su MA Crossover
-3. Esci
+What would you like to do?
+1. Run base strategies (Buy & Hold, MA, RSI)
+2. Launch MA Crossover grid search
+3. Exit
 ```
 
 ---
@@ -59,7 +59,7 @@ Cosa vuoi fare?
 
 ## 📊 Sample Grid Search Output
 
-CSV salvato in `results/ma_crossover_results.csv`:
+CSV saved in `results/ma_crossover_results.csv`:
 
 | Strategy     | CAGR   | Sharpe Ratio | Max Drawdown |
 |--------------|--------|---------------|---------------|
@@ -67,7 +67,7 @@ CSV salvato in `results/ma_crossover_results.csv`:
 | MA 10-100    | 0.1018 | 0.90          | 0.1966        |
 | MA 10-50     | 0.0927 | 0.86          | 0.1727        |
 
-Ordina automaticamente per performance usando uno score pesato.
+Automatically ranked by a weighted performance score.
 
 ---
 
